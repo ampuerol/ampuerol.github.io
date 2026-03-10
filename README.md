@@ -6,274 +6,491 @@ layout: null
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ampuero & Jules - Landing Page</title>
+    <title>Ampuero & Jules - Creando el Futuro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* CSS Reset and Variables */
         :root {
-            --bg-color: #0f172a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-1: #3b82f6; /* Blue */
-            --accent-2: #8b5cf6; /* Purple */
-            --accent-3: #10b981; /* Green */
+            --bg-base: #050505;
+            --accent-primary: #00f2fe; /* Cyan neon */
+            --accent-secondary: #4facfe; /* Blue neon */
+            --accent-tertiary: #b06ab3; /* Purple neon */
+            --text-main: #ffffff;
+            --text-muted: #a0aabf;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
-        
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-base);
             color: var(--text-main);
-            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.12), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.12), transparent 25%);
+            position: relative;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            width: 60vw;
+            height: 60vw;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: floatGlow 15s ease-in-out infinite alternate;
+        }
+
+        .glow-1 {
+            background: radial-gradient(circle, var(--accent-primary), transparent 60%);
+            top: -20%;
+            left: -10%;
+        }
+
+        .glow-2 {
+            background: radial-gradient(circle, var(--accent-tertiary), transparent 60%);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.1); }
         }
 
         .container {
-            max-width: 900px;
-            padding: 3rem 2rem;
-            text-align: center;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* SVG Graphics */
-        .hero-graphic {
-            margin-bottom: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .hero-svg {
-            width: 180px;
-            height: 180px;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        /* Navbar / Status */
+        .status-badge {
+            margin-top: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            animation: fadeInDown 1s ease-out;
         }
 
-        .spin-slow {
-            transform-origin: center;
-            animation: spin 25s linear infinite;
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-primary);
+            animation: pulse 2s infinite;
         }
 
-        .spin-slow-reverse {
-            transform-origin: center;
-            animation: spin 30s linear infinite reverse;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
         }
 
-        .pulse-opacity {
-            animation: pulseOp 4s ease-in-out infinite;
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-top: 5rem;
+            margin-bottom: 5rem;
+            animation: fadeInUp 1.2s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes pulseOp { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
-
-        /* Typography */
-        h1 {
-            font-size: 3.5rem;
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
             font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
         }
 
-        .subtitle {
-            font-size: 1.25rem;
+        .highlight {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* Typing Effect */
+        .typing-container {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            height: 3em; /* Reserve space */
         }
 
-        .text-accent {
-            color: var(--text-main);
-            font-weight: 600;
-            border-bottom: 2px solid var(--accent-2);
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: var(--accent-primary);
         }
 
-        /* Features Grid */
-        .features {
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Visual SVG Representation */
+        .collab-graphic {
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto;
+            filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.2));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .node { transform-origin: center; }
+        .spin { animation: spin 20s linear infinite; transform-origin: 200px 200px; }
+        .spin-reverse { animation: spin 25s linear infinite reverse; transform-origin: 200px 200px; }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        /* Glass Cards */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            width: 100%;
+            margin-bottom: 4rem;
         }
 
-        .card {
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            text-align: left;
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(139, 92, 246, 0.3);
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.7s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 150%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0, 242, 254, 0.1);
+            border-color: rgba(255,255,255,0.15);
         }
 
         .card-icon {
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-mask: var(--svg-url) no-repeat center / contain;
+            mask: var(--svg-url) no-repeat center / contain;
         }
 
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-main);
+        .glass-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
-        .card p {
-            font-size: 0.95rem;
+        .glass-card p {
             color: var(--text-muted);
+            line-height: 1.7;
         }
 
-        /* Status indicator */
-        .status {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(16, 185, 129, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            margin-bottom: 2rem;
+        /* Roadmap Section */
+        .roadmap {
+            width: 100%;
+            background: linear-gradient(180deg, transparent, var(--glass-bg), transparent);
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            text-align: center;
         }
 
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-3);
+        .roadmap h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, var(--text-main), var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            padding: 2rem;
+            background: var(--glass-bg);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: var(--bg-base);
+            border: 2px solid var(--accent-primary);
             border-radius: 50%;
-            margin-right: 8px;
-            box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
-            animation: pulse-ring 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
         }
 
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        .step.active .step-number {
+            background: var(--accent-primary);
+            color: var(--bg-base);
         }
 
-        .status-text {
-            color: var(--accent-3);
-            font-size: 0.875rem;
-            font-weight: 500;
+        /* Animations */
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Footer */
         footer {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 0;
+            text-align: center;
             color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 2rem 1rem; }
+        .heart {
+            color: #ff4b4b;
+            display: inline-block;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
     </style>
 </head>
 <body>
 
+    <!-- Background Effects -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
     <div class="container">
-        
-        <div class="status">
-            <div class="status-dot"></div>
-            <span class="status-text">Trabajo en Progreso - Online</span>
+        <!-- Status Indicator -->
+        <div class="status-badge">
+            <div class="pulse-dot"></div>
+            <span style="font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">PROYECTO EN CONSTRUCCIÓN</span>
         </div>
 
-        <div class="hero-graphic">
-            <svg class="hero-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hero Section -->
+        <section class="hero">
+            <svg class="collab-graphic" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <linearGradient id="gradPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00f2fe" />
+                        <stop offset="100%" stop-color="#4facfe" />
                     </linearGradient>
-                    <linearGradient id="gradSecondary" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                    <linearGradient id="purple-grad" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#b06ab3" />
+                        <stop offset="100%" stop-color="#4facfe" />
                     </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
                 </defs>
-                <!-- Outer Ring -->
-                <circle cx="100" cy="100" r="85" fill="none" stroke="url(#gradPrimary)" stroke-width="2" stroke-dasharray="10 15" class="spin-slow"/>
-                <!-- Inner Ring -->
-                <circle cx="100" cy="100" r="65" fill="none" stroke="url(#gradSecondary)" stroke-width="3" stroke-dasharray="20 10" class="spin-slow-reverse"/>
-                <!-- Center Triangle -->
-                <path d="M100 45 L150 125 L50 125 Z" fill="url(#gradPrimary)" class="pulse-opacity" />
-                <!-- Core -->
-                <circle cx="100" cy="105" r="15" fill="#0f172a" />
+
+                <!-- Core Connections -->
+                <g class="spin">
+                    <circle cx="200" cy="200" r="120" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5 5" />
+                    <circle cx="200" cy="80" r="6" fill="#00f2fe" filter="url(#glow)"/>
+                    <circle cx="285" cy="285" r="4" fill="#b06ab3" filter="url(#glow)"/>
+                    <circle cx="115" cy="285" r="5" fill="#4facfe" filter="url(#glow)"/>
+                </g>
+
+                <g class="spin-reverse">
+                    <circle cx="200" cy="200" r="160" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="10 20" />
+                    <circle cx="40" cy="200" r="8" fill="#b06ab3" filter="url(#glow)"/>
+                    <circle cx="360" cy="200" r="6" fill="#00f2fe" filter="url(#glow)"/>
+                </g>
+
+                <!-- Human + AI Core -->
+                <path d="M 200 150 L 243 225 L 157 225 Z" fill="none" stroke="url(#cyan-grad)" stroke-width="3" filter="url(#glow)">
+                    <animate attributeName="stroke-dasharray" values="0,300; 300,0; 0,300" dur="8s" repeatCount="indefinite" />
+                </path>
+                <path d="M 200 250 L 157 175 L 243 175 Z" fill="none" stroke="url(#purple-grad)" stroke-width="3" filter="url(#glow)">
+                    <animate attributeName="stroke-dasharray" values="300,0; 0,300; 300,0" dur="8s" repeatCount="indefinite" />
+                </path>
+                <circle cx="200" cy="200" r="25" fill="#050505" stroke="url(#cyan-grad)" stroke-width="4" filter="url(#glow)"/>
+                <circle cx="200" cy="200" r="10" fill="#ffffff" />
             </svg>
-        </div>
 
-        <h1>Ampuero's Hub</h1>
-        
-        <p class="subtitle">
-            ¡Bienvenido! Esta página es el resultado de una colaboración en conjunto entre <span class="text-accent">Ampuero</span> y <span class="text-accent">Jules (IA)</span>. Comenzamos como una landing page básica, pero estamos elaborando algo asombroso y moderno.
-        </p>
+            <h1>Ampuero & <span class="highlight">Jules</span></h1>
 
-        <div class="features">
-            <!-- Card 1 -->
-            <div class="card">
-                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                    <line x1="8" y1="21" x2="16" y2="21"></line>
-                    <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-                <h3>Diseño Responsivo</h3>
-                <p>Estructura pensada para lucir perfecta en cualquier dispositivo, con un esquema de colores profundos y vibrantes.</p>
+            <div class="typing-container">
+                <span class="typing-text" id="typewriter"></span>
             </div>
 
-            <!-- Card 2 -->
-            <div class="card">
-                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-                <h3>Efectos Visuales</h3>
-                <p>Gráficos SVG modernos, animaciones suaves y una experiencia de usuario interactiva y pulida.</p>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem;">
+                Comenzamos como un lienzo en blanco. Hoy, humano e inteligencia artificial trabajan codo a codo para esculpir una experiencia web interactiva, moderna y sin límites.
+            </p>
+        </section>
+
+        <!-- Features -->
+        <div class="features-grid">
+            <div class="glass-card">
+                <div class="card-icon" style="--svg-url: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polygon points=\'12 2 2 7 12 12 22 7 12 2\'/><polyline points=\'2 17 12 22 22 17\'/><polyline points=\'2 12 12 17 22 12\'/></svg>');"></div>
+                <h3>Arquitectura Moderna</h3>
+                <p>Estructura sólida utilizando los últimos estándares de desarrollo web, pensada para la escalabilidad y el rendimiento óptimo.</p>
             </div>
 
-            <!-- Card 3 -->
-            <div class="card">
-                <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4-4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-                <h3>Trabajo en Equipo</h3>
-                <p>Próximamente añadiremos los gráficos regulares y más contenido. La sinergia entre humano e IA sigue creando.</p>
+            <div class="glass-card">
+                <div class="card-icon" style="--svg-url: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'2\' y=\'3\' width=\'20\' height=\'14\' rx=\'2\' ry=\'2\'/><line x1=\'8\' y1=\'21\' x2=\'16\' y2=\'21\'/><line x1=\'12\' y1=\'17\' x2=\'12\' y2=\'21\'/></svg>');"></div>
+                <h3>Diseño Responsivo & Glassmorphism</h3>
+                <p>Interfaces fluidas que se adaptan a cualquier dispositivo, potenciadas con efectos visuales inmersivos y elegantes paneles translúcidos.</p>
+            </div>
+
+            <div class="glass-card">
+                <div class="card-icon" style="--svg-url: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\'/></svg>');"></div>
+                <h3>Sinergia Creativa</h3>
+                <p>La combinación perfecta entre la visión humana de Ampuero y las capacidades de ejecución y diseño de la IA Jules.</p>
             </div>
         </div>
-
-        <footer>
-            <p>Construyendo el futuro, una línea de código a la vez.</p>
-            <p style="margin-top: 0.5rem;">&copy; 2024 Ampuero & Jules</p>
-        </footer>
-
     </div>
 
+    <!-- Roadmap -->
+    <section class="roadmap">
+        <h2>Nuestro Camino</h2>
+        <div class="timeline">
+            <div class="step">
+                <div class="step-number">✓</div>
+                <h3 style="margin-bottom: 10px; color: var(--text-main);">Fase 1</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Estructura inicial, landing page básica y configuración del repositorio.</p>
+            </div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <h3 style="margin-bottom: 10px; color: var(--accent-primary);">Fase 2 (Actual)</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Mejoras visuales, UI/UX avanzada, Glassmorphism y gráficos abstractos SVG.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3 style="margin-bottom: 10px; color: var(--text-main);">Fase 3</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Integración de gráficos regulares proporcionados por Ampuero y contenido final.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <footer>
+            <p>Forjado con <span class="heart">♥</span> por Ampuero y Jules</p>
+            <p style="margin-top: 10px; opacity: 0.5;">© 2024 - Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Script for Typing Effect -->
+    <script>
+        const texts = [
+            "Bienvenido a nuestro espacio creativo.",
+            "Humano e Inteligencia Artificial.",
+            "Construyendo el futuro de la web.",
+            "Aún en fase de desarrollo..."
+        ];
+
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
+        let isDeleting = false;
+
+        function type() {
+            if (count === texts.length) {
+                count = 0;
+            }
+
+            currentText = texts[count];
+
+            if (isDeleting) {
+                letter = currentText.slice(0, --index);
+            } else {
+                letter = currentText.slice(0, ++index);
+            }
+
+            document.getElementById('typewriter').textContent = letter;
+
+            let typeSpeed = 100;
+
+            if (isDeleting) {
+                typeSpeed /= 2;
+            }
+
+            if (!isDeleting && letter.length === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && letter.length === 0) {
+                isDeleting = false;
+                count++;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start typing effect after initial animation
+        setTimeout(type, 1500);
+    </script>
 </body>
 </html>
