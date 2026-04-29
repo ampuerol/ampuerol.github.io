@@ -1,493 +1,510 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ampuero & Jules - Creando el Futuro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>ODYSSEY BEYOND</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-base: #050505;
-            --accent-primary: #00f2fe; /* Cyan neon */
-            --accent-secondary: #4facfe; /* Blue neon */
-            --accent-tertiary: #b06ab3; /* Purple neon */
-            --text-main: #ffffff;
-            --text-muted: #a0aabf;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --void-black: #000000;
+            --hal-red: #FF0000;
+            --starlight-white: #F5F5F5;
+            --orbital-blue: #1565C0;
+            --station-grey: #B0BEC5;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            min-height: 100vh;
+            background-color: var(--void-black);
+            color: var(--starlight-white);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            position: relative;
+            scroll-behavior: smooth;
         }
 
-        /* Animated Background Gradients */
-        .bg-glow {
-            position: fixed;
-            width: 60vw;
-            height: 60vw;
-            border-radius: 50%;
-            filter: blur(120px);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Generic video styling for ENR silver-retention */
+        .enr-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.8) brightness(1.1) sepia(0.2) hue-rotate(190deg) saturate(0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
             z-index: -1;
-            opacity: 0.4;
-            animation: floatGlow 15s ease-in-out infinite alternate;
         }
 
-        .glow-1 {
-            background: radial-gradient(circle, var(--accent-primary), transparent 60%);
-            top: -20%;
-            left: -10%;
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
         }
 
-        .glow-2 {
-            background: radial-gradient(circle, var(--accent-tertiary), transparent 60%);
-            bottom: -20%;
-            right: -10%;
-            animation-delay: -5s;
+        .hero video {
+            animation: dolly-forward 120s linear infinite;
         }
 
-        @keyframes floatGlow {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(10%, 10%) scale(1.1); }
+        @keyframes dolly-forward {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.5); }
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+        .hero-content {
+            position: relative;
+            z-index: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Navbar / Status */
-        .status-badge {
-            margin-top: 2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 20px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .pulse-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--accent-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--accent-primary);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            margin-top: 5rem;
-            margin-bottom: 5rem;
-            animation: fadeInUp 1.2s ease-out forwards;
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 6rem);
+            font-weight: 400;
+            letter-spacing: 0.5em; /* wide-tracked */
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            margin-left: 0.5em; /* offset for letter-spacing */
             opacity: 0;
-            transform: translateY(30px);
+            animation: glacial-fade 10s ease-in forwards;
+            animation-delay: 1s;
         }
 
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--text-main), var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -2px;
+        @keyframes glacial-fade {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
-        .highlight {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-        }
-
-        /* Typing Effect */
-        .typing-container {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            height: 3em; /* Reserve space */
-        }
-
-        .typing-text::after {
-            content: '|';
-            animation: blink 1s infinite;
-            color: var(--accent-primary);
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Visual SVG Representation */
-        .collab-graphic {
-            width: 100%;
-            max-width: 400px;
-            margin: 2rem auto;
-            filter: drop-shadow(0 0 20px rgba(0, 242, 254, 0.2));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .node { transform-origin: center; }
-        .spin { animation: spin 20s linear infinite; transform-origin: 200px 200px; }
-        .spin-reverse { animation: spin 25s linear infinite reverse; transform-origin: 200px 200px; }
-        
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        /* Glass Cards */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            width: 100%;
+        .hero-subtitle {
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--station-grey);
             margin-bottom: 4rem;
+            opacity: 0;
+            animation: glacial-fade 8s ease-in forwards;
+            animation-delay: 3s;
         }
 
-        .glass-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        .cta-button {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--starlight-white);
+            border-radius: 50%;
             position: relative;
+            cursor: pointer;
             overflow: hidden;
+            opacity: 0;
+            animation: glacial-fade 8s ease-in forwards;
+            animation-delay: 4s;
+            transition: all 0.3s ease;
         }
 
-        .glass-card::before {
+        .cta-button::after {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            transform: skewX(-20deg);
-            transition: left 0.7s ease;
-        }
-
-        .glass-card:hover::before {
-            left: 150%;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0, 242, 254, 0.1);
-            border-color: rgba(255,255,255,0.15);
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            -webkit-mask: var(--svg-url) no-repeat center / contain;
-            mask: var(--svg-url) no-repeat center / contain;
-        }
-
-        .glass-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .glass-card p {
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* Roadmap Section */
-        .roadmap {
+            bottom: 0;
+            left: 0;
             width: 100%;
-            background: linear-gradient(180deg, transparent, var(--glass-bg), transparent);
-            padding: 4rem 2rem;
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
+            height: 0%;
+            background-color: var(--starlight-white);
+            transition: height 2.5s cubic-bezier(0.4, 0, 0.2, 1); /* Airlock pressurizing */
+        }
+
+        .cta-button:hover::after {
+            height: 100%;
+        }
+
+        /* Section Layouts */
+        .section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 2rem;
+            z-index: 1;
+            background-color: var(--void-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            font-size: 3rem;
             text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+            color: var(--starlight-white);
         }
 
-        .roadmap h2 {
+        /* Grid for video panels */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-panel {
+            position: relative;
+            height: 50vh;
+            overflow: hidden;
+            border: 1px solid rgba(245, 245, 245, 0.1);
+        }
+
+        .video-panel video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.5) brightness(0.8) grayscale(0.8) sepia(0.1) hue-rotate(190deg);
+            transition: filter 1s ease;
+        }
+
+        .video-panel:hover video {
+            filter: contrast(1.8) brightness(1.1) grayscale(0.2) sepia(0.1) hue-rotate(190deg);
+        }
+
+        .panel-overlay {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 2;
+        }
+
+        .panel-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+            font-weight: 300;
+        }
+
+        .panel-stat {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
-            background: linear-gradient(to right, var(--text-main), var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--hal-red);
+            font-weight: 700;
         }
 
-        .timeline {
+        /* 1-point perspective specifically for Training */
+        .perspective-grid .video-panel {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
+            align-items: center;
+            border: 2px solid var(--station-grey);
         }
 
-        .step {
-            flex: 1;
-            min-width: 250px;
-            padding: 2rem;
-            background: var(--glass-bg);
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            position: relative;
-        }
-
-        .step-number {
+        .perspective-grid .video-panel::before,
+        .perspective-grid .video-panel::after {
+            content: '';
             position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: var(--bg-base);
-            border: 2px solid var(--accent-primary);
-            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .perspective-grid .video-panel::before {
+            top: 0; bottom: 0; left: 50%; width: 1px;
+        }
+        .perspective-grid .video-panel::after {
+            left: 0; right: 0; top: 50%; height: 1px;
+        }
+
+        /* Mission Control */
+        .mission-control {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            color: var(--accent-primary);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+            background-color: var(--void-black);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .step.active .step-number {
-            background: var(--accent-primary);
-            color: var(--bg-base);
+        .mission-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4; /* for flickering overlay */
+            filter: contrast(2) brightness(0.7) sepia(0.8) hue-rotate(180deg);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        footer {
-            padding: 3rem 0;
+        .dashboard {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            width: 90%;
+            max-width: 1400px;
             text-align: center;
-            color: var(--text-muted);
+            border: 1px solid var(--station-grey);
+            padding: 4rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .dash-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .dash-label {
             font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            color: var(--station-grey);
+            text-transform: uppercase;
         }
 
-        .heart {
-            color: #ff4b4b;
-            display: inline-block;
-            animation: beat 1s infinite;
+        .dash-value {
+            font-size: 3rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--orbital-blue);
         }
 
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        .timer-red {
+            color: var(--hal-red);
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Background Effects -->
-    <div class="bg-glow glow-1"></div>
-    <div class="bg-glow glow-2"></div>
-
-    <div class="container">
-        <!-- Status Indicator -->
-        <div class="status-badge">
-            <div class="pulse-dot"></div>
-            <span style="font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">PROYECTO EN CONSTRUCCIÓN</span>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <video class="enr-video" autoplay loop muted playsinline>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1 class="hero-title">ODYSSEY BEYOND</h1>
+            <div class="hero-subtitle">Commercial Orbital Departures — 2027</div>
+            <div class="cta-button" id="scroll-cta"></div>
         </div>
+    </section>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <svg class="collab-graphic" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#00f2fe" />
-                        <stop offset="100%" stop-color="#4facfe" />
-                    </linearGradient>
-                    <linearGradient id="purple-grad" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#b06ab3" />
-                        <stop offset="100%" stop-color="#4facfe" />
-                    </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-
-                <!-- Core Connections -->
-                <g class="spin">
-                    <circle cx="200" cy="200" r="120" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="5 5" />
-                    <circle cx="200" cy="80" r="6" fill="#00f2fe" filter="url(#glow)"/>
-                    <circle cx="285" cy="285" r="4" fill="#b06ab3" filter="url(#glow)"/>
-                    <circle cx="115" cy="285" r="5" fill="#4facfe" filter="url(#glow)"/>
-                </g>
-
-                <g class="spin-reverse">
-                    <circle cx="200" cy="200" r="160" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="10 20" />
-                    <circle cx="40" cy="200" r="8" fill="#b06ab3" filter="url(#glow)"/>
-                    <circle cx="360" cy="200" r="6" fill="#00f2fe" filter="url(#glow)"/>
-                </g>
-
-                <!-- Human + AI Core -->
-                <path d="M 200 150 L 243 225 L 157 225 Z" fill="none" stroke="url(#cyan-grad)" stroke-width="3" filter="url(#glow)">
-                    <animate attributeName="stroke-dasharray" values="0,300; 300,0; 0,300" dur="8s" repeatCount="indefinite" />
-                </path>
-                <path d="M 200 250 L 157 175 L 243 175 Z" fill="none" stroke="url(#purple-grad)" stroke-width="3" filter="url(#glow)">
-                    <animate attributeName="stroke-dasharray" values="300,0; 0,300; 300,0" dur="8s" repeatCount="indefinite" />
-                </path>
-                <circle cx="200" cy="200" r="25" fill="#050505" stroke="url(#cyan-grad)" stroke-width="4" filter="url(#glow)"/>
-                <circle cx="200" cy="200" r="10" fill="#ffffff" />
-            </svg>
-
-            <h1>Ampuero & <span class="highlight">Jules</span></h1>
-            
-            <div class="typing-container">
-                <span class="typing-text" id="typewriter"></span>
+    <!-- DESTINATIONS -->
+    <section class="section" id="destinations">
+        <h2 class="section-title">Destinations</h2>
+        <div class="video-grid">
+            <div class="video-panel">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">L.E.O. STATION</div>
+                    <div class="panel-stat stat-counter" data-target="408">0</div>
+                    <div style="font-size: 0.8rem; color: var(--station-grey); letter-spacing: 0.1em;">KM ALTITUDE</div>
+                </div>
             </div>
-            
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem;">
-                Comenzamos como un lienzo en blanco. Hoy, humano e inteligencia artificial trabajan codo a codo para esculpir una experiencia web interactiva, moderna y sin límites.
-            </p>
-        </section>
-
-        <!-- Features -->
-        <div class="features-grid">
-            <div class="glass-card">
-                <div class="card-icon" style="--svg-url: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><polygon points=\'12 2 2 7 12 12 22 7 12 2\'/><polyline points=\'2 17 12 22 22 17\'/><polyline points=\'2 12 12 17 22 12\'/></svg>');"></div>
-                <h3>Arquitectura Moderna</h3>
-                <p>Estructura sólida utilizando los últimos estándares de desarrollo web, pensada para la escalabilidad y el rendimiento óptimo.</p>
+            <div class="video-panel">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">LUNAR SURFACE</div>
+                    <div class="panel-stat stat-counter" data-target="384400">0</div>
+                    <div style="font-size: 0.8rem; color: var(--station-grey); letter-spacing: 0.1em;">KM DISTANCE</div>
+                </div>
             </div>
-            
-            <div class="glass-card">
-                <div class="card-icon" style="--svg-url: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><rect x=\'2\' y=\'3\' width=\'20\' height=\'14\' rx=\'2\' ry=\'2\'/><line x1=\'8\' y1=\'21\' x2=\'16\' y2=\'21\'/><line x1=\'12\' y1=\'17\' x2=\'12\' y2=\'21\'/></svg>');"></div>
-                <h3>Diseño Responsivo & Glassmorphism</h3>
-                <p>Interfaces fluidas que se adaptan a cualquier dispositivo, potenciadas con efectos visuales inmersivos y elegantes paneles translúcidos.</p>
-            </div>
-
-            <div class="glass-card">
-                <div class="card-icon" style="--svg-url: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'white\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\'/></svg>');"></div>
-                <h3>Sinergia Creativa</h3>
-                <p>La combinación perfecta entre la visión humana de Ampuero y las capacidades de ejecución y diseño de la IA Jules.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Roadmap -->
-    <section class="roadmap">
-        <h2>Nuestro Camino</h2>
-        <div class="timeline">
-            <div class="step">
-                <div class="step-number">✓</div>
-                <h3 style="margin-bottom: 10px; color: var(--text-main);">Fase 1</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Estructura inicial, landing page básica y configuración del repositorio.</p>
-            </div>
-            <div class="step active">
-                <div class="step-number">2</div>
-                <h3 style="margin-bottom: 10px; color: var(--accent-primary);">Fase 2 (Actual)</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Mejoras visuales, UI/UX avanzada, Glassmorphism y gráficos abstractos SVG.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3 style="margin-bottom: 10px; color: var(--text-main);">Fase 3</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Integración de gráficos regulares proporcionados por Ampuero y contenido final.</p>
+            <div class="video-panel">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">MARS TRANSIT</div>
+                    <div class="panel-stat stat-counter" data-target="225">0</div>
+                    <div style="font-size: 0.8rem; color: var(--station-grey); letter-spacing: 0.1em;">MILLION KM</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="container">
-        <footer>
-            <p>Forjado con <span class="heart">♥</span> por Ampuero y Jules</p>
-            <p style="margin-top: 10px; opacity: 0.5;">© 2026 - Todos los derechos reservados.</p>
-        </footer>
-    </div>
+    <!-- THE VESSEL -->
+    <section class="section">
+        <h2 class="section-title">The Vessel</h2>
+        <div class="video-grid" style="grid-template-columns: 1fr;">
+            <!-- 360 Exterior (placeholder) -->
+            <div class="video-panel" style="height: 60vh;">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">V-CLASS INTERCEPTOR EXTERIOR</div>
+                </div>
+            </div>
+        </div>
+        <div class="video-grid" style="margin-top: 2rem;">
+            <!-- Interior Clips -->
+            <div class="video-panel" style="height: 40vh;">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">OBSERVATION DECK</div>
+                </div>
+            </div>
+            <div class="video-panel" style="height: 40vh;">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">ZERO-G CABINS</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Script for Typing Effect -->
+    <!-- TRAINING PROGRAM -->
+    <section class="section">
+        <h2 class="section-title">Training Program</h2>
+        <div class="video-grid perspective-grid">
+            <div class="video-panel">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">CENTRIFUGE</div>
+                </div>
+            </div>
+            <div class="video-panel">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">PRESSURE SUIT FITTING</div>
+                </div>
+            </div>
+            <div class="video-panel">
+                <video autoplay loop muted playsinline>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+                <div class="panel-overlay">
+                    <div class="panel-title">ZERO-G SIMULATION</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION CONTROL -->
+    <section class="mission-control">
+        <video class="mission-video" id="mission-bg" autoplay loop muted playsinline>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+        <div class="dashboard">
+            <div class="dash-item">
+                <div class="dash-label">T-MINUS</div>
+                <div class="dash-value timer-red" id="countdown">72:14:09</div>
+            </div>
+            <div class="dash-item">
+                <div class="dash-label">CABIN PRESSURE</div>
+                <div class="dash-value">14.7 <span style="font-size: 1rem;">PSI</span></div>
+            </div>
+            <div class="dash-item">
+                <div class="dash-label">SYSTEM STATUS</div>
+                <div class="dash-value" style="color: var(--starlight-white);">NOMINAL</div>
+            </div>
+        </div>
+    </section>
+
     <script>
-        const texts = [
-            "Bienvenido a nuestro espacio creativo.",
-            "Humano e Inteligencia Artificial.",
-            "Construyendo el futuro de la web.",
-            "Aún en fase de desarrollo..."
-        ];
-        
-        let count = 0;
-        let index = 0;
-        let currentText = "";
-        let letter = "";
-        let isDeleting = false;
-        
-        function type() {
-            if (count === texts.length) {
-                count = 0;
+        // Smooth scrolling for CTA
+        document.getElementById('scroll-cta').addEventListener('click', () => {
+            document.getElementById('destinations').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Intersection Observer for Stat Counters
+        const counters = document.querySelectorAll('.stat-counter');
+        const speed = 100; // The lower the slower
+
+        const animateCounters = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const updateCount = () => {
+                        const target = +counter.getAttribute('data-target');
+                        const count = +counter.innerText;
+                        const inc = target / speed;
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 30);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(counter);
+                }
+            });
+        };
+
+        const counterObserver = new IntersectionObserver(animateCounters, {
+            threshold: 0.5
+        });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Countdown Timer Script
+        const countdownElement = document.getElementById('countdown');
+        let totalSeconds = 72 * 3600 + 14 * 60 + 9; // 72:14:09
+
+        setInterval(() => {
+            if(totalSeconds > 0) {
+                totalSeconds--;
+                const h = Math.floor(totalSeconds / 3600);
+                const m = Math.floor((totalSeconds % 3600) / 60);
+                const s = totalSeconds % 60;
+
+                countdownElement.innerText =
+                    String(h).padStart(2, '0') + ':' +
+                    String(m).padStart(2, '0') + ':' +
+                    String(s).padStart(2, '0');
             }
-            
-            currentText = texts[count];
-            
-            if (isDeleting) {
-                letter = currentText.slice(0, --index);
+        }, 1000);
+
+        // Subtle flickering effect on dashboard container background video opacity
+        const missionBg = document.getElementById('mission-bg');
+        setInterval(() => {
+            if (Math.random() > 0.92) {
+                missionBg.style.opacity = 0.2 + Math.random() * 0.3;
             } else {
-                letter = currentText.slice(0, ++index);
+                missionBg.style.opacity = 0.4;
             }
-            
-            document.getElementById('typewriter').textContent = letter;
-            
-            let typeSpeed = 100;
-            
-            if (isDeleting) {
-                typeSpeed /= 2;
-            }
-            
-            if (!isDeleting && letter.length === currentText.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && letter.length === 0) {
-                isDeleting = false;
-                count++;
-                typeSpeed = 500;
-            }
-            
-            setTimeout(type, typeSpeed);
-        }
-        
-        // Start typing effect after initial animation
-        setTimeout(type, 1500);
+        }, 150);
     </script>
 </body>
 </html>
