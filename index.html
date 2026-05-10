@@ -452,6 +452,7 @@
         let currentText = "";
         let letter = "";
         let isDeleting = false;
+        const typewriterElement = document.getElementById('typewriter');
         
         function type() {
             if (count === texts.length) {
@@ -466,7 +467,7 @@
                 letter = currentText.slice(0, ++index);
             }
             
-            document.getElementById('typewriter').textContent = letter;
+            typewriterElement.textContent = letter;
             
             let typeSpeed = 100;
             
